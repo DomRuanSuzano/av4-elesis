@@ -1,0 +1,22 @@
+Considerando temp 0[15], temp 2[15] e temp 4[15] como as variáveis booleanas A, B e C, escreva e minimize a expressão lógica para o vaium.
+
+
+(A.B) + (A.notB.notC) + (notA.B.notC)
+
+(A.(B + notB.notC)) + (notA.B.notC)
+
+(A.((B + notB).(B + notC))) + (notA.B.notC)
+
+(A.(1.(B + notC))) + (notA.B.notC)
+
+(AB) + (A.notC) + (notA.B.notC)
+
+(A.notC) + (B.(A + notA.notC))
+
+(A.notC) + (B.((A + notA).(A + notC)))
+
+(A.notC) + (B.(1.(A + notC)))
+
+(A.notC) + (A.B) + (B.notC)
+
+(A.(B + notC)) + (B.notC)

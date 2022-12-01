@@ -1,0 +1,23 @@
+function vaium 2
+	push argument 0
+	push argument 1
+	push argument 2
+	neg
+	or
+	and
+	push argument 1
+	push argument 2
+	neg
+	and
+	or
+	push constant 0
+	eq
+	if-goto end
+
+	push constant 1
+	return
+
+label end
+	push constant 0
+
+	return
