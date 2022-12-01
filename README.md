@@ -1,97 +1,87 @@
-# Av4 - 2° Semestre de 2021
+# Av4 - 1° Semestre de 2022
 
 
 Avaliação 4 - Elementos de Sistemas
 
-| Pontos SW      |
-| :--:           |
-|  70            |
+| Pontos HW | Pontos SW |
+|:---------:|:---------:|
+| 10        | 45        |
 
 - Avaliação **individual**.
 - **120 min** total.
-- Ficar conectado no canal geral no Teams (para ouvir instruções).
 - Ficar no blackboard durante a prova.
 - Clonar o seu repositório (e trabalhar nele)
 - Fazer **commit** ao final de cada questão.
 - Lembre de dar **push** ao final.
 
 
-
 **LEMBRE DE REALIZAR UM COMMIT (A CADA QUESTÃO) E DAR PUSH AO FINALIZAR**
 
 
-## 1. Sequência de Fibonacci
-
-| Pontos SW      |
-| :--:           |
-|  15            |
-
-A sequência de Fibonacci é uma sequência de números inteiros, onde cada termo subsequente corresponde à soma dos dois termos anteriores. A sequência normalmente começa com "0" e "1" e tem aplicações em diversas áreas como mercado financeiro, ciências da computação e fenômenos da natureza.
-
-Neste caso, solicita-se que seja escrito um programa usando a linguagem de máquina virtual de pilha para escrever os 11 primeiros números da sequência de Fibonacci na pilha.
+## 1. Add32 - O retorno
 
 
-#### Resultado:
+| Pontos HW | Pontos SW |
+|:---------:|:---------:|
+| 10        | 15        |
 
-![](Pilha.PNG)
+Assim como na Av3, queremos realizar uma operação matemática da soma de dois núemros de 32 bits.
 
+Considere que os 16 bits menos significativos de um número W estejam armazenados na 'temp 0' e os 16 bits mais significativos estejam armazenados na 'temp 1'. Considere também que os 16 bits menos significativos de um número T estejam armazenados na 'temp 2' e os 16 bits mais significativos estejam armazenados na 'temp 3'. 
 
-### Implementação
+Crie uma função em linguagem de máquina que **detecta** o vaium da soma dos 16 bits menos significativos.
 
-Implemente a programação no arquivo `vm/fibonacci/Main.vm`
-
-### Testes
-
-Editar o arquivo `tests/testsVM/config_testes.txt` selecionando o que desejam testar.
-
-Execute o script
-
-```
-./testeVm.py
-```
-
-
-#### Rubrica para avaliação:
-
-| Pontos SW    | Descritivo     |
-| :--------    | :--            |
-|   15         |  Sequência criada com uso de **loop**   |
-|   5          |  Sequência criada sem uso de **loop**   |
-
-
-
-
-## 2. Integração numérica
-
-| Pontos SW      |
-| :--:           |
-|  15            |
-
-
-"Em matemática, em especial na análise numérica, existe uma grande família de algoritmos, cujo principal objetivo é aproximar o valor de uma dada integral definida de uma função sem o uso de uma expressão analítica para a sua primitiva. Normalmente, estes métodos adotam as seguintes três fases: decomposição do domínio em pedaços; integração aproximada da função de cada pedaço e soma dos resultados numéricos obtidos." [`Fonte: https://pt.wikipedia.org/wiki/Integração_numérica`](https://pt.wikipedia.org/wiki/Integração_numérica)
-    
-Deseja-se criar uma função (`trapz`) usando a linguagem de máquina virtual de pilha para calcular a área de um trapézio, que pode ser utilizada para calcular a integral numérica de uma curva.
+Implemente a soma de 32 bits no arquivo main, considerando o vaium, e salvo os 16 bits menos significativos do na 'temp 4' e os 16 bits mais significativos na 'temp 5'.
 
 
 #### Exemplo:
 
-A área indicada na figura pode ser calculada por: A = (x2-x1)(y1+y2)/2.
+W = "00110011001100110000111100001111"
 
-![](Trapz.png)
+T  = "00001111000011110011001100110011"
 
+Representação na memória:
+
+temp 0 = "0000111100001111"
+
+temp 1 = "0011001100110011"
+
+temp 2 = "0011001100110011"
+
+temp 3 = "0000111100001111"
+
+Resultado:
+
+W+T = "01000010010000100100001001000010"
+
+temp 4 = '0100001001000010'
+
+temp 5 = '0100001001000010'
+
+### Lembrando:
+
+O vaium irá ocorrer quando:
+
+ - (RAM[5][15] = 1 E RAM[7][15] = 1) OU 
+ - (RAM[5][15] = 1 E RAM[7][15] = 0 E RAM[9][15] = 0) OU
+ - (RAM[5][15] = 0 E RAM[7][15] = 1 E RAM[9][15] = 0) 
+
+## Pontuação HW
+
+Considerando RAM[5][15], RAM[7][15] e RAM[9][15] como as variáveis booleanas A, B e C, escreve e minimize a expressão lógica para o vaium.
+
+### Resposta
+
+Responda e justifique os passos no arquivo `vm/booleana.txt`.
+
+
+## Pontuação SW
 
 ### Implementação
 
-Implemente a programação usando a linguagem de máquina virtual de pilha  no arquivo `vm/trapz/trapz.vm`. A ordem dos argumentos passados para a função é x1, y1, x2 e y2. Não alterar o arquivo `vm/trapz/Main.vm`.
-
-> Obs: todos os números (inclusive a área calculada) são inteiros.
-
-> Dica: Podem utilizar as funções div e mult do Projeto H-VM.
-
+Implemente a programação nos arquivos `vm/add32/Main.vm` e `vm/add32/vaium.vm`.
 
 ### Testes
-
-Editar o arquivo `tests/testsVM/config_testes.txt` selecionando o que desejam testar.
 
 Execute o script
 
@@ -101,46 +91,32 @@ Execute o script
 
 #### Rubrica para avaliação:
 
-| Pontos SW    | Descritivo     |
-| :--------    | :--            |
-|   15         |  Função implementada e passando nos testes  |
-|    ?         |  Implementações incompletas ou incorretas serão analisadas caso a caso   |
+| Pontos HW | Pontos SW | Descritivo                                                                  |
+|-----------|-----------|-----------------------------------------------------------------------------|
+| 10        |           | Simplificação da função lógica                                              |
+|           | 10        | Implementação da função vaium                                               |
+|           | 5         | Implementação da soma no arquivo main incluindo a chamada para função vaium |
+
+## 2. Assembler - instrução modificada
 
 
+| Pontos HW | Pontos SW |
+|:---------:|:---------:|
+| 0         | 15        |
 
-## 3. Assembler - instrução modificada
+Na Av3, foi proposta uma modificação na CPU de forma a incluir o muxDM como indicado na figura, permitindo que os dados da memória também possam entrar em X, o que permitiria que operações como  addw (%A), (%A), %D pudessem ser realizadas. 
 
-| Pontos SW      |
-| :--:           |
-|  20            |
+![](figs/CPU_muxDM.png)
 
+Dessa forma, o formato das instruções, que permanece usando 18 bits, deve ser alterado da seguinte forma:
 
-Na Av3, foi proposta um modificação na CPU de forma a alterar a posição do MuxALUI permitindo que um valor seja carregado tanto no registrador %A como no %D ou em ambos em um mesmo ciclo. A figura a seguir ilustra a modificação que tinha sido proposta:
-
-![](CPU.png)
-
-O formato das instruções permanece usando 18 bits, mas os dois bits mais significativos (bits 17 e 16) passam a indicar o tipo de instrução da seguinte forma:
-
-- "00" - carregamento no registrador %A (leaw %A)
-- "01" - carregamento no registrador %D (leaw %D)
-- "10" - instrução tipo C (demais operações)
-- "11" - carregamento em ambos os registradores %A e %D. (leaw %A, %D)
-
-No projeto Assembler fornecido, implemente **apenas** a codificação dos destinos (2 bits mais significativos) das instruções tipo A.
-
-#### Exemplo:
-
-leaw $1, %A;     => "000000000000000001"
-
-leaw $2, %D;     => "010000000000000010"
-
-leaw $3, %A, %D;     => "110000000000000011"
-
+- na instrução tipo C, o bit 14 (que era mantido em zero no CPU original) passa a representar o sinal de controle do muxDM.
+- as instruções tipo A não são alteradas.
 
 
 ### Implementação
 
-Implemente apenas o **dest_load()** no arquivo **Code.java**.
+Implemente apenas o **comp()** no arquivo **Code.java** para uma instrução addw, considerando todas as possíveis combinações que podem ocorrer na CPU modificada.
 
 ### Testes
 
@@ -149,29 +125,25 @@ O teste deve ser executado dentro do IntelliJ através do arquivo **CodeTest.jav
 
 #### Rubrica para avaliação:
 
-| Pontos SW    | Descritivo     |
-| :--------    | :--            |
-|   20         |  Função implementada e passando nos testes  |
-|   10         |  Carregamento no registradores individuais funcionando, mas carregamento em ambos os registradores sem passar nos testes   |
+| Pontos SW | Descritivo                                                            |
+|-----------|-----------------------------------------------------------------------|
+| 15        | Função implementada e passando nos testes                             |
+| ?         | Implementações incompletas ou incorretas serão analisadas caso a caso |
 
 
+## 3. VMTranslator - swap
 
 
-## 4. VMTranslator - popp
+| Pontos HW | Pontos SW |
+|:---------:|:---------:|
+| 0         | 15        |
 
-| Pontos SW      |
-| :--:           |
-|  20            |
-
-
-Como sabemos, quando a função pop é executada na máquina virtual de pilha, o último valor da pilha é copiado para o segmento passado como argumento e "apagado" da pilha.
-
-Mas, em algumas situações, pode ser interessante manter o valor na pilha após um comando pop. Assim, queremos incluir na nossa linguagem da máquina virtual o comando `popp` que copia o último valor da pilha mas não o "apaga".
+Queremos agora incluir um novo comando em linguagem de máquina (swap) que inverte as posições dos dois últimos elementos da pilha.
 
 
 ### Implementação
 
-Implemente a tradução do popp no arquivo Code.java no projeto VMTranslator localizado em `VMTranslator/src/main/java/vmtraslator`. Implemente **apenas** a seção temp!!
+Implemente a tradução do swap no arquivo Code.java no projeto VMTranslator localizado em `VMTranslator/src/main/java/vmtraslator`.
 
 ### Testes
 
@@ -183,7 +155,7 @@ Execute o script
 
 #### Rubrica para avaliação:
 
-| Pontos SW    | Descritivo     |
-| :--------    | :--            |
-|   20         |  Função implementada e passando nos testes  |
-|    ?         |  Implementações incompletas ou incorretas serão analisadas caso a caso   |
+| Pontos SW | Descritivo                                                            |
+|-----------|-----------------------------------------------------------------------|
+| 15        | Função implementada e passando nos testes                             |
+| ?         | Implementações incompletas ou incorretas serão analisadas caso a caso |
